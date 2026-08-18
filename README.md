@@ -2,8 +2,6 @@
 
 A real-time, anonymous message board / imageboard built on Firebase (Firestore + Hosting + Cloud Functions).
 
-🔗 Live site: https://404-nnf.web.app
-
 ## Features
 
 - **Anonymous, real-time feed** — no accounts or sign-up, messages appear instantly for everyone (Firestore `onSnapshot`)
