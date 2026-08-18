@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "chanv2-6a2af"
+  },
+  "targets": {
+    "chanv2-6a2af": {
+      "hosting": {
+        "anan-flow": [
+          "anan-flow"
+        ],
+        "404-nnf": [
+          "404-nnf"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

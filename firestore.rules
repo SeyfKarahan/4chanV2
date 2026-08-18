@@ -1,0 +1,36 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /messages/{messageId} {
+
+      // Herkes okuyabilir (anonim akış herkese açık)
+      allow read: if true;
+
+      // Herkes yazabilir ama sadece belirli şartlarla:
+      // - text alanı var, string ve 1-500 karakter arası
+      // - createdAt sunucu zaman damgası olmalı (istemci tarih uyduramaz)
+      // - seq pozitif bir tam sayı olmalı (sıra numarası)
+      // - başka alan eklenemez
+      allow create: if request.resource.data.keys().hasOnly(['text', 'createdAt', 'seq'])
+                    && request.resource.data.text is string
+                    && request.resource.data.text.size() > 0
+                    && request.resource.data.text.size() <= 500
+                    && request.resource.data.createdAt == request.time
+                    && request.resource.data.seq is int
+                    && request.resource.data.seq > 0;
+
+      // Kimse mesajları düzenleyemez veya silemez (anonim akışın doğası gereği)
+      allow update, delete: if false;
+    }
+
+    // Sıra numarası sayacı — mesaj gönderildiğinde bir transaction ile artırılır
+    match /counters/messages {
+      allow read: if true;
+      allow write: if request.resource.data.keys().hasOnly(['count'])
+                   && request.resource.data.count is int
+                   && request.resource.data.count > 0;
+    }
+  }
+}

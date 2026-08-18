@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Name not Found</title>
+    <link id="favicon" rel="icon" href="">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="topbar">
+        <span class="board-tag">/nnf/</span>
+        <span class="board-title">404 Name not Found</span>
+        <span class="post-count" id="post-count">0 posts</span>
+        <div class="search-wrap" id="search-wrap">
+            <input type="search" id="search-input" class="search-input" placeholder="Search all messages..." autocomplete="off">
+            <button id="search-toggle" type="button" class="search-toggle" title="Search" aria-label="Search">
+                <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="8.5" cy="8.5" r="6"></circle>
+                    <line x1="13" y1="13" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="settings">
+            <button id="layout-toggle" type="button" title="Switch feed direction">Chat</button>
+            <button id="theme-toggle" type="button" title="Switch theme">Dark</button>
+        </div>
+    </header>
+
+    <div class="container" id="container">
+        <!-- Post submission form -->
+        <form id="message-form" class="input-area">
+            <span class="prompt">&gt;</span>
+            <textarea id="message-input" placeholder="Write something... (Start a line with &gt; for greentext)" autocomplete="off" required maxlength="500" rows="1"></textarea>
+            <button type="submit">Post</button>
+        </form>
+
+        <!-- Live feed of posts -->
+        <div id="feed" class="feed-container">
+            <p class="empty-state">No one has posted yet. Be the first.</p>
+        </div>
+
+        <!-- Pagination controls -->
+        <nav class="pager" id="pager">
+            <button id="pager-first" type="button" disabled title="First page">&laquo; First</button>
+            <button id="pager-prev" type="button" disabled>&lsaquo; Newer</button>
+            <span class="pager-status">
+                <input id="pager-goto" type="number" min="1" value="1" inputmode="numeric">
+                / <span id="pager-total">1</span>
+                <span id="pager-live-tag" class="pager-live-tag">· live</span>
+            </span>
+            <button id="pager-next" type="button" disabled>Older &rsaquo;</button>
+            <button id="pager-last" type="button" disabled title="Last page">Last &raquo;</button>
+        </nav>
+    </div>
+
+    <!-- Hover preview for >>N reply links -->
+    <div id="preview-tooltip" class="preview-tooltip" hidden></div>
+
+    <!-- Loaded as a module -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
