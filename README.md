@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 404 Name not Found (`/nnf/`)
 
 Firebase (Firestore + Hosting + Cloud Functions) üzerinde çalışan, gerçek zamanlı, anonim bir mesaj akışı / imageboard.
@@ -66,3 +67,6 @@ firebase deploy --only firestore:rules
 
 - Mesajlar silinmez / düzenlenemez (`firestore.rules` bunu engelliyor) — anonim akışın doğası gereği.
 - IP adresi ya da konum bilgisi loglanmıyor.
+=======
+# 4chanV2
+>>>>>>> 2dbdca418d87f9f9145139c4380412a6cb61e44f
