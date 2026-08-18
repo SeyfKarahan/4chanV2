@@ -1,33 +1,32 @@
-<<<<<<< HEAD
 # 404 Name not Found (`/nnf/`)
 
-Firebase (Firestore + Hosting + Cloud Functions) üzerinde çalışan, gerçek zamanlı, anonim bir mesaj akışı / imageboard.
+A real-time, anonymous message board / imageboard built on Firebase (Firestore + Hosting + Cloud Functions).
 
-🔗 Canlı site: https://404-nnf.web.app
+🔗 Live site: https://404-nnf.web.app
 
-## Özellikler
+## Features
 
-- **Anonim, gerçek zamanlı akış** — kimlik/kayıt gerekmez, mesajlar anında herkese yayılır (Firestore `onSnapshot`)
-- **Sıralı mesaj numarası** (`#1`, `#2`, ...) — her mesaja kalıcı bir `seq` numarası atanır
-- **Yanıt sistemi** — `>>123` yazarak başka bir mesaja referans verilebilir, tıklanınca o mesaja atlar; "Reply" butonuyla otomatik eklenir
-- **Hover önizleme** — bir `>>123` linkinin üstüne gelince mesaj içeriği önizlemesi çıkar
-- **Greentext** — `>` ile başlayan satırlar yeşil renklenir (klasik imageboard stili)
-- **Sayfalama** — İlk/Son sayfa, ileri/geri, belirli bir sayfaya direkt atlama, toplam sayfa sayısı
-- **Tüm sohbette arama** — mesaj metninde anlık arama (debounce'lu, taranan mesaj sayısı sınırlı)
-- **İki görünüm modu** — Classic (forum tarzı, en yeni üstte) / Chat (en yeni altta, mesaj kutusu altta)
-- **Açık/koyu tema**
-- **Masaüstü bildirimleri** — sekme arka plandayken yeni mesajda favicon rozeti, başlık sayacı ve (izin verilirse) tarayıcı bildirimi
-- **Telegram bot entegrasyonu** — yeni mesaj geldiğinde bir Telegram grubuna/kişiye bildirim gönderir (Cloud Function, `functions/index.js`)
-- **Az veri kullanımı gözetilerek tasarlandı** — sayfalama, arama tarama sınırı, sekme görünürlüğüne duyarlı dinleyici gibi optimizasyonlarla Firestore okuma/yazma maliyeti düşük tutulmaya çalışıldı
+- **Anonymous, real-time feed** — no accounts or sign-up, messages appear instantly for everyone (Firestore `onSnapshot`)
+- **Sequential post numbers** (`#1`, `#2`, ...) — every message gets a permanent `seq` number
+- **Reply system** — reference another post with `>>123`, click it to jump to that post; a "Reply" button inserts it automatically
+- **Hover preview** — hovering over a `>>123` link shows a preview of that post's content
+- **Greentext** — lines starting with `>` are colored green, classic imageboard style
+- **Pagination** — First/Last page, Next/Prev, jump directly to any page number, total page count shown
+- **Site-wide search** — searches message text live (debounced, with a capped scan size)
+- **Two layout modes** — Classic (forum-style, newest on top) / Chat (newest at the bottom, composer pinned below)
+- **Dark / light theme**
+- **Desktop notifications** — while the tab is in the background, a new post badges the favicon, updates the title with a count, and (if permission is granted) shows a browser notification
+- **Telegram bot integration** — a Cloud Function (`functions/index.js`) pings a Telegram chat/group whenever a new message is posted
+- **Built with data usage in mind** — pagination, a capped search scan, and a visibility-aware listener keep Firestore read/write costs low
 
-## Teknoloji
+## Tech stack
 
-- Düz HTML / CSS / JavaScript (framework yok, build adımı yok)
-- Firebase Firestore (veritabanı)
-- Firebase Hosting (statik barındırma)
-- Firebase Cloud Functions — 2nd gen (Telegram bildirimi için)
+- Plain HTML / CSS / JavaScript — no framework, no build step
+- Firebase Firestore (database)
+- Firebase Hosting (static hosting)
+- Firebase Cloud Functions — 2nd gen (for the Telegram notification)
 
-## Kurulum
+## Setup
 
 ```bash
 git clone https://github.com/SeyfKarahan/4chanV2.git
@@ -36,9 +35,9 @@ npm install
 cd functions && npm install && cd ..
 ```
 
-`public/firebase-config.js` içine kendi Firebase proje bilgilerini gir (Firebase Console → Project settings → Web app).
+Fill in your own Firebase project details in `public/firebase-config.js` (Firebase Console → Project settings → Web app).
 
-`functions/.env` dosyasına Telegram bot bilgilerini gir:
+Add your Telegram bot info to `functions/.env`:
 ```
 TELEGRAM_BOT_TOKEN=...
 TELEGRAM_CHAT_ID=...
@@ -52,21 +51,18 @@ firebase deploy --only functions
 firebase deploy --only firestore:rules
 ```
 
-## Klasör yapısı
+## Project structure
 
 ```
 4chanV2/
-├── public/              # site dosyaları (index.html, app.js, style.css, firebase-config.js)
-├── functions/           # Telegram bildirim Cloud Function'ı
-├── firestore.rules       # veritabanı güvenlik kuralları
-├── firebase.json         # Firebase Hosting/Functions/Firestore ayarları
-└── .firebaserc            # Firebase proje eşlemesi
+├── public/              # site files (index.html, app.js, style.css, firebase-config.js)
+├── functions/           # Cloud Function for Telegram notifications
+├── firestore.rules       # database security rules
+├── firebase.json         # Firebase Hosting/Functions/Firestore config
+└── .firebaserc            # Firebase project alias mapping
 ```
 
-## Notlar
+## Notes
 
-- Mesajlar silinmez / düzenlenemez (`firestore.rules` bunu engelliyor) — anonim akışın doğası gereği.
-- IP adresi ya da konum bilgisi loglanmıyor.
-=======
-# 4chanV2
->>>>>>> 2dbdca418d87f9f9145139c4380412a6cb61e44f
+- Messages can't be deleted or edited (`firestore.rules` blocks this) — by design, for an anonymous feed.
+- No IP address or location data is logged.
